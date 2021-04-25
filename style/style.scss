@@ -1,0 +1,66 @@
+$backColor: rgb(238, 238, 238);
+$secondColor: slategrey;
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Slab', serif;
+    background-color: $backColor;
+}
+
+li {
+    list-style-type: none;
+}
+
+.center {
+    padding: 0 calc(50% - 570px)
+}
+
+button {
+    padding: 15px;
+    background-color: $secondColor;
+    border-radius: 30px;
+    color: rgb(29, 29, 29);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.76);
+    &:hover{
+        cursor: pointer;
+        color: $backColor;
+        box-shadow: 0 0 10px rgb(255, 255, 255);
+        transition: all 0.3s;
+    }
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color:$secondColor;
+    margin-bottom: 20px;
+}
+
+.brand {
+    font-size: 36px;
+    font-weight: 600;
+    color: $backColor;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+.products {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.76);
+}
