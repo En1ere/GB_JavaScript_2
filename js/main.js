@@ -1,4 +1,45 @@
 'use strict';
+//_______________________________________________________________________
+// Переделать в ДЗ не использовать fetch а Promise
+// let getRequest = (url, cb) => {
+//     let xhr = new XMLHttpRequest();
+//     xhr.open('GET', url, true);
+//     xhr.onreadystatechange = () => {
+//         if (xhr.readyState === 4) {
+//             if (xhr.status !== 200) {
+//                 console.log('Error');
+//             } else {
+//                 cb(xhr.responseText);
+//             }
+//         }
+//     };
+//     xhr.send();
+// };
+//________________________________________________________________________
+
+// Перевел на промисы
+
+// let promiseFunc = (url) => {
+//     return new Promise((resolve, reject) => {
+//         let xhr = new XMLHttpRequest();
+//         xhr.open('GET', url, true);
+
+//         xhr.onreadystatechange = () => {
+//             if(xhr.readyState === 4){
+//                 if(xhr.status !== 200){
+//                     reject('Error');
+//                 } else {
+//                     resolve(xhr.responseText);
+//                 }
+//             }
+//         };
+//         xhr.send();
+//     })
+// };
+//_______________________________________________________________________________________________
+
+
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 class ProductList {
     constructor(container = '.products') {
@@ -6,18 +47,19 @@ class ProductList {
         this._goods = [];
         this._allProducts = [];
 
-        this._fetchGoods();
-        this._render();
-        this._calcSum();
+        this._getProducts()
+            .then((data) => {
+                this._goods = data;
+                this._render();
+            });
     }
 
-    _fetchGoods() {
-        this._goods = [
-            { id: 1, title: 'Notebook', price: 20000 },
-            { id: 2, title: 'Mouse', price: 1500 },
-            { id: 3, title: 'Keyboard', price: 5000 },
-            { id: 4, title: 'Gamepad', price: 4500 },
-        ];
+    _getProducts() {
+        return fetch(`${API}/catalogData.json`)
+            .then((response) => response.json())
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     _render() {
@@ -38,16 +80,16 @@ class ProductList {
             sum += +product.dataset.price
         }
 
-        console.log(sum);
+        return sum;
     }
 }
 
 class ProductItem {
     constructor(product, img = "https://via.placeholder.com/200x250") {
-        this.title = product.title;
+        this.title = product.product_name;
         this.price = product.price;
         this.img = img;
-        this.id = product.id;
+        this.id = product.id_product;
     }
 
     render() {
@@ -63,22 +105,76 @@ class ProductItem {
 }
 
 class Cart {
-    constructor() {
-
+    constructor(container = '.cart__mini') {
+        this.container = container;
+        this._goods = [];
+        this._allProducts = [];
+        this.openCart();
+        this._getCart()
+            .then((data) => {
+                this._goods = data;
+                this._render();
+            });
     }
 
-    render() { };
+    _getCart() {
+        return fetch(`${API}/getBasket.json`)
+            .then((response) => response.json())
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    _render() {
+        const block = document.querySelector(this.container);
+
+        for (const good of this._goods.contents) {
+            const cartItemObject = new CartItem(good)
+            this._allProducts.push(cartItemObject);
+            block.insertAdjacentHTML('beforeend', cartItemObject.render())
+        }
+    };
+
+    openCart() {
+        document.querySelector('.btn-cart').addEventListener('click', () => {
+            document.querySelector('.cart__mini').classList.toggle('hidden');
+        })
+    };
 }
 
 class CartItem {
-    constructor() {
-
+    constructor(product, img = "https://via.placeholder.com/100x150") {
+        this.title = product.product_name;
+        this.price = product.price;
+        this.img = img;
+        this.id = product.id_product;
+        this.quantity = product.quantity;
+        this.totalSum = this.quantity * this.price;
     }
 
-    render() { };
+    render() {
+        return `<div class="cart__item">
+                    <div class="cart__item-desc">
+                        <img src="${this.img}" alt="Some image">
+                        <div class="cart__item-desc-text">
+                            <p class="cart__item-title">${this.title}</p>
+                            <p class="cart__item-quantity">Количество: ${this.quantity}</p>
+                            <p class="cart__item-single-price">${this.price}₽ за единицу</p>
+                        </div>
+                    </div>
+                    <div class="cart__item-button">
+                        <p class="cart__item-price">${this.totalSum}₽</p>
+                        <button class="cart__item-del-btn">&times;</button>
+                    </div>
+                </div>`
+    };
+
     remove() { };
-    increase() { };
+    increase() {
+
+    };
     decrease() { };
 }
 
 new ProductList();
+new Cart();

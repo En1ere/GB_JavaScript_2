@@ -12,6 +12,10 @@ li {
     list-style-type: none;
 }
 
+.hidden {
+    display: none;
+}
+
 .center {
     padding: 0 calc(50% - 570px)
 }
@@ -63,4 +67,62 @@ header {
     padding: 20px;
     border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.76);
+}
+
+.cart {
+    position: relative;
+    font-size: 24px;
+
+    &__mini {
+        box-shadow: 5px 5px 20px black;
+        border-radius: 10px;
+        box-sizing: border-box;
+        right: 0;
+        top: 130%;
+        position: absolute;
+        background-color: $backColor;
+        padding: 20px;
+        color: black;
+        width: 500px;
+    }
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    &__item:not(:last-child){
+        margin-bottom: 20px;
+        box-shadow: 0px 14px 6px -12px #808080;
+        }
+    &__item-desc{
+        display: flex;
+    }
+    &__item img{
+        align-self: flex-start;
+        margin-right: 25px;
+    }
+    &__item-single-price{
+        color: #474747;
+        font-size: 0.7em;
+    }
+    &__item-price{
+        margin-left: 30px;
+    }
+    &__item-desc-text{
+        max-width: 150px;
+    }
+    &__item-quantity {
+        margin-top: 15px;
+        font-size: 0.75em;
+    }
+    &__item-button{
+        text-align: right;
+        
+    }
+    &__item-del-btn{
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        padding: 2px;
+    }
 }
