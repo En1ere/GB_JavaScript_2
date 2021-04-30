@@ -90,15 +90,15 @@ class Cart extends List {
             .then(data => {
                 if (data.result === 1) {
                     let productId = +el.dataset['id'];
-                    let find = this.allProducts.find(product => product.id === productId);
+                    let find = this.allProducts.find(product => product.product_id === productId);
                     if (find) {
                         find.quantity++;
                         this.updateCart(find);
                     } else {
                         let product = {
-                            id: productId,
+                            id_product: productId,
                             price: +el.dataset['price'],
-                            title: el.dataset['name'],
+                            product_name: el.dataset['name'],
                             quantity: 1
                         };
 
@@ -115,7 +115,7 @@ class Cart extends List {
             .then(data => {
                 if (data.result === 1) {
                     let productId = +el.dataset['id'];
-                    let find = this.allProducts.find(product => product.id === productId);
+                    let find = this.allProducts.find(product => product.product_id === productId);
                     if (find.quantity > 1) {
                         find.quantity--;
                         this.updateCart(find);
@@ -129,17 +129,17 @@ class Cart extends List {
             })
     }
     updateCart(product) {
-        let block = document.querySelector(`.cart__item[data-id="${product.id}"]`);
+        let block = document.querySelector(`.cart__item[data-id="${product.product_id}"]`);
         block.querySelector('.cart__item-quantity').textContent = `Количество: ${product.quantity}`;
         block.querySelector('.cart__item-price').textContent = `${product.quantity * product.price} ₽`;
     }
 }
 class Item {
     constructor(product, img = "https://via.placeholder.com/200x250") {
-        this.title = product.product_name;
+        this.product_name = product.product_name;
         this.price = product.price;
         this.img = img;
-        this.id = product.id_product;
+        this.product_id = product.id_product;
     }
     render() {
         return ``;
@@ -147,14 +147,12 @@ class Item {
 }
 class ProductItem extends Item {
     render() {
-        return `<div class="product-item" data-id="${this.id}" data-price="${this.price}">
+        return `<div class="product-item" data-id="${this.product_id}" data-price="${this.price}">
                     <img src=${this.img}>        
                     <div class="desc">
-                        <h3>${this.title}</h3>
+                        <h3>${this.product_name}</h3>
                         <p>${this.price} \u20bd</p>
-                        <button class="by-btn" data-id="${this.id}"
-                        data-name="${this.title}"
-                        data-price="${this.price}">Добавить в корзину</button>
+                        <button class="by-btn" data-id="${this.product_id}" data-name="${this.product_name}" data-price="${this.price}">Добавить в корзину</button>
                     </div>
                 </div>`;
     }
@@ -167,18 +165,18 @@ class CartItem extends Item {
     }
 
     render() {
-        return `<div class="cart__item" data-id="${this.id}">
+        return `<div class="cart__item" data-id="${this.product_id}">
                     <div class="cart__item-desc">
                         <img src="${this.img}" alt="Some image">
                         <div class="cart__item-desc-text">
-                            <p class="cart__item-title">${this.title}</p>
+                            <p class="cart__item-title">${this.product_name}</p>
                             <p class="cart__item-quantity">Количество: ${this.quantity}</p>
                             <p class="cart__item-single-price">${this.price}₽ за единицу</p>
                         </div>
                     </div>
                     <div class="cart__item-button">
                         <p class="cart__item-price">${this.totalSum}₽</p>
-                        <button class="cart__item-del-btn" data-id="${this.id}">&times;</button>
+                        <button class="cart__item-del-btn" data-id="${this.product_id}">&times;</button>
                     </div>
                 </div>`
     };
