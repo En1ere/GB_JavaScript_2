@@ -61,6 +61,29 @@ header {
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
 
+.search {
+  margin-right: 50px;
+}
+
+.search__field {
+  padding: 15px;
+  background-color: #eeeeee;
+  color: black;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.search__btn {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.76);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.76);
+}
+
 .products {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -93,6 +116,9 @@ header {
 .cart {
   position: relative;
   font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .cart__mini {

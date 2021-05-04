@@ -7,19 +7,15 @@ body {
     font-family: 'Roboto Slab', serif;
     background-color: $backColor;
 }
-
 li {
     list-style-type: none;
 }
-
 .hidden {
     display: none;
 }
-
 .center {
     padding: 0 calc(50% - 570px)
 }
-
 button {
     padding: 15px;
     background-color: $secondColor;
@@ -36,7 +32,6 @@ button {
         transition: all 0.3s;
     }
 }
-
 header {
     display: flex;
     justify-content: space-between;
@@ -45,20 +40,35 @@ header {
     background-color:$secondColor;
     margin-bottom: 20px;
 }
-
 .brand {
     font-size: 36px;
     font-weight: 600;
     color: $backColor;
     text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
-
+.search {
+    margin-right: 50px;
+    &__field{
+        padding: 15px;
+        background-color: $backColor;
+        color: black;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px; 
+        box-shadow: none;
+    }
+    &__btn{
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.76);
+    }
+}
 .products {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
 .product-item {
     text-align: center;
     display: flex;
@@ -68,10 +78,10 @@ header {
     border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.76);
 }
-
 .cart {
     position: relative;
     font-size: 18px;
+    display: flex;
 
     &__mini {
         box-shadow: 5px 5px 20px black;

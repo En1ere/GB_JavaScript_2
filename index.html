@@ -14,22 +14,40 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="app">
         <header class="center">
             <div>
                 <p class="brand">Store</p>
             </div>
             <div class="cart">
-                <button class="btn-cart" type="button">Корзина</button>
-                <div class="cart__mini hidden"></div>
+                <div class="search">
+                    <form action="#" class="search__form">
+                        <input type="text" class="search__field">
+                        <button class="search__btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <button class="btn-cart" type="button" @click='isVisibleCart = !isVisibleCart'>Корзина</button>
+                <div class="cart__mini" v-if='isVisibleCart'></div>
             </div>
 
         </header>
 
         <main class="center">
-            <div class="products"></div>
+            <div class="products">
+                <div class="product-item" v-for='product of products' :key='product.id_product'>
+                    <img :src='imgCatalog' alt="Some img">
+                    <div class="desc">
+                        <h3>{{ product.product_name }}</h3>
+                        <p>{{ product.price }} ₽</p>
+                        <button class="by-btn" @click='addProduct(product)'>Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./js/main.js"></script>
 </body>
 
