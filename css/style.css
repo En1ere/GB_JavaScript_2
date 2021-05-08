@@ -209,6 +209,8 @@ header {
 }
 
 .error__window {
+  font-size: 26px;
+  color: red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -218,7 +220,7 @@ header {
           flex-direction: column;
   margin: 40px auto 0px auto;
   width: 400px;
-  height: 300px;
+  min-height: 150px;
   padding: 20px 40px;
   background-color: #eeeeee;
   border-radius: 5px;
@@ -229,7 +231,7 @@ header {
 .error__window button {
   -ms-flex-item-align: end;
       align-self: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .error__window p {
