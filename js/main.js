@@ -8,8 +8,7 @@ const app = new Vue({
             return fetch(url)
                 .then(result => result.json())
                 .catch(err => {
-                    this.$root.$refs.error.$data.showError = true;
-                    this.$root.$refs.error.$data.textError = err;
+                    this.$refs.error.setError(err)
                 })
         },
     },
