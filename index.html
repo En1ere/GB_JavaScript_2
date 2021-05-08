@@ -20,50 +20,24 @@
                 <p class="brand">Store</p>
             </div>
             <div class="cart">
-                <div class="search">
-                    <form action="#" class="search__form" @submit.prevent="filter">
-                        <input type="text" class="search__field" v-model="searchLine">
-                        <button class="search__btn" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <button class="btn-cart" type="button" @click='isVisibleCart = !isVisibleCart'>Корзина</button>
-                <div class="cart__mini" v-show='isVisibleCart'>
-                    <p v-if="!cartItems.length">Корзина пуста</p>
-
-                    <div class="cart__item" v-for="item of cartItems" :key="item.id_product">
-                        <div class="cart__item-desc">
-                            <img :src="imgCart" alt="Some image">
-                            <div class="cart__item-desc-text">
-                                <p class="cart__item-title">{{item.product_name}}</p>
-                                <p class="cart__item-quantity">Количество: {{item.quantity}}</p>
-                                <p class="cart__item-single-price">{{item.price}}₽ за единицу</p>
-                            </div>
-                        </div>
-                        <div class="cart__item-button">
-                            <p class="cart__item-price">{{item.quantity*item.price}}₽</p>
-                            <button class="cart__item-del-btn" @click="remove(item)">&times;</button>
-                        </div>
-                    </div>
-                </div>
+                <filter-goods ref="filter"></filter-goods>
+                <cart ref="cart"></cart>
             </div>
         </header>
+
         <main class="center">
-            <div class="products">
-                <div class="product-item" v-for='product of filtered' :key='product.id_product'>
-                    <img :src='imgCatalog' alt="Some img">
-                    <div class="desc">
-                        <h3 class="product-name">{{ product.product_name }}</h3>
-                        <p>{{ product.price }} ₽</p>
-                        <button class="by-btn" @click='addProduct(product)'>Добавить в корзину</button>
-                    </div>
-                </div>
-            </div>
+            <products ref="products"></products>
         </main>
+
+        <error ref="error"></error>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="js/ErrorComp.js"></script>
+    <script src="js/FilterComp.js"></script>
+    <script src="js/CartComp.js"></script>
+    <script src="js/ProductComp.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
