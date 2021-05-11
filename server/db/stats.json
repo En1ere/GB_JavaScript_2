@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Клавиатура",
+        "action": "change",
+        "time": "5:30:30 pm, 11 May 2021"
+    },
+    {
+        "name": "Геймпад",
+        "action": "add",
+        "time": "5:31:21 pm, 11 May 2021"
+    },
+    {
+        "name": "Адаптер WiFi",
+        "action": "add",
+        "time": "5:31:30 pm, 11 May 2021"
+    },
+    {
+        "name": "Геймпад",
+        "action": "del",
+        "time": "5:31:31 pm, 11 May 2021"
+    },
+    {
+        "name": "Наушники",
+        "action": "del",
+        "time": "5:31:32 pm, 11 May 2021"
+    }
+]
