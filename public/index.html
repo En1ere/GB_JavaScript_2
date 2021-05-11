@@ -14,21 +14,30 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="app">
         <header class="center">
             <div>
                 <p class="brand">Store</p>
             </div>
-            <div>
-                <button class="btn-cart" type="button">Корзина</button>
+            <div class="cart">
+                <filter-goods ref="filter"></filter-goods>
+                <cart ref="cart"></cart>
             </div>
         </header>
 
         <main class="center">
-            <div class="products"></div>
+            <products ref="products"></products>
         </main>
+
+        <error ref="error"></error>
     </div>
-    <script src="./js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ErrorComp.js"></script>
+    <script src="js/FilterComp.js"></script>
+    <script src="js/CartComp.js"></script>
+    <script src="js/ProductComp.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
